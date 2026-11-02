@@ -1,0 +1,21 @@
+# Candidate settings. STOP 2 must confirm data coverage and RAM budget.
+cube: data/processed/regional.nc
+output: artifacts/regional-v1
+window: 15
+max_age_hours: 240
+embargo_days: 8
+width: 32
+temporal: true
+patch: 32
+tile: 64
+batch_size: 2
+epochs: 30
+max_batches: 0
+learning_rate: 0.0003
+seed: 42
+cpu_threads: 2
+splits:
+  train: ['2021-01-01', '2022-12-31']
+  validation: ['2023-01-01', '2023-06-30']
+  calibration: ['2023-07-01', '2023-12-31']
+  test: ['2024-01-01', '2024-12-31']

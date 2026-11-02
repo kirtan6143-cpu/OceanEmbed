@@ -1,0 +1,76 @@
+# This template intentionally refuses execution until actual files and QC are reviewed.
+# All paths are relative to repository root. Rename coordinates before reading variables.
+reviewed: false
+mode: satellite_observation
+start: '2021-01-01'
+end: '2024-12-31'
+lat: [5, 25]
+lon: [80, 100]
+step: 0.25
+channels:
+  sst:
+    path: data/raw/sst/*.nc
+    variable: sea_surface_temperature
+    source_units: kelvin
+    offset: -273.15
+    spatial_tolerance_deg: 0.15
+    qc_variable: quality_level
+    accepted_qc: [4, 5]
+    age_variable: age_hours
+  sss:
+    path: data/raw/sss/*.nc
+    variable: smap_sss
+    source_units: 1e-3
+    spatial_tolerance_deg: 0.3
+    qc_review_note: REPLACE_WITH_PRODUCT_SPECIFIC_QC_REVIEW
+    age_variable: age_hours
+  sla:
+    path: data/raw/altimetry/*.nc
+    variable: sla
+    source_units: m
+    spatial_tolerance_deg: 0.2
+    qc_review_note: REPLACE_WITH_PRODUCT_SPECIFIC_QC_REVIEW
+    age_variable: age_hours
+  current_u:
+    path: data/raw/altimetry/*.nc
+    variable: ugos
+    source_units: m/s
+    spatial_tolerance_deg: 0.2
+    qc_review_note: REPLACE_WITH_PRODUCT_SPECIFIC_QC_REVIEW
+    age_variable: age_hours
+  current_v:
+    path: data/raw/altimetry/*.nc
+    variable: vgos
+    source_units: m/s
+    spatial_tolerance_deg: 0.2
+    qc_review_note: REPLACE_WITH_PRODUCT_SPECIFIC_QC_REVIEW
+    age_variable: age_hours
+  wind_u:
+    path: data/raw/wind/*.nc
+    variable: eastward_wind
+    source_units: m s-1
+    spatial_tolerance_deg: 0.2
+    qc_review_note: REPLACE_WITH_PRODUCT_SPECIFIC_QC_REVIEW
+    age_variable: age_hours
+  wind_v:
+    path: data/raw/wind/*.nc
+    variable: northward_wind
+    source_units: m s-1
+    spatial_tolerance_deg: 0.2
+    qc_review_note: REPLACE_WITH_PRODUCT_SPECIFIC_QC_REVIEW
+    age_variable: age_hours
+target:
+  path: data/raw/glorys/*.nc
+  rename: {latitude: lat, longitude: lon}
+  temperature: thetao
+  salinity: so
+  temperature_units: degrees_C
+  salinity_units: 1e-3
+  convention: potential
+  surface_convention: copy_shallowest_to_zero
+  spatial_tolerance_deg: 0.15
+bathymetry:
+  path: data/raw/bathymetry/*.nc
+  variable: elevation
+  scale: -1
+  spatial_tolerance_deg: 0.15

@@ -1,0 +1,1 @@
+V5 production build NOT RUN here: frontend dependencies unavailable. Three chart-contract checks passed; see frontend-contract-tests.txt. Run npm ci followed by npm run build locally.

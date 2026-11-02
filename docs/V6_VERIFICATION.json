@@ -1,0 +1,33 @@
+{
+  "release": "0.6.0",
+  "date": "2026-09-11",
+  "passed": {
+    "core_checks": 15,
+    "performance_unittests": 3,
+    "chart_contract_tests": 3,
+    "python_syntax_files": 35,
+    "typescript_and_vite_production_build": true
+  },
+  "scope": {
+    "core": "NumPy routines and RAMA function bodies with explicit test doubles, not real NetCDF IO",
+    "performance": "Real cache implementation exercised through in-memory ASGI messages: LRU limits, byte equality, run invalidation including same-size replacement, query separation, validation bypass, errors, streaming",
+    "frontend": "TypeScript compilation and Vite production build; not browser interaction QA"
+  },
+  "build_output": {
+    "main_js_kB": 252.71,
+    "main_js_gzip_kB": 78.94,
+    "plotly_js_kB": 4843.01,
+    "plotly_js_gzip_kB": 1468.70,
+    "note": "Plotly loads on chart mount. Total chart-engine download remains large. Vite retains its chunk-size warning. No browser-speed improvement percentage is claimed."
+  },
+  "not_run": [
+    "Full pytest and live FastAPI/NetCDF integration: dependencies unavailable; installation blocked by cancelled network approval",
+    "Real HTTP latency benchmark and concurrent-user load test",
+    "Browser interaction/visual QA and browser rendering latency",
+    "Google Colab/GPU training",
+    "Real-source downloads and observational validation"
+  ],
+  "local_gate": "Install .[train,dev], run npm ci in frontend, then python scripts/verify_release.py",
+  "local_latency": "Start API then python scripts/benchmark_api.py --requests 20",
+  "model_change": "None; training and scientific algorithms preserved from v5"
+}

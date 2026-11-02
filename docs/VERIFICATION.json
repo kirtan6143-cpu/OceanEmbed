@@ -1,0 +1,28 @@
+{
+  "release": "0.5.0",
+  "checked_at": "2026-09-11T10:25:29.330005+00:00",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "passed": {
+    "core_checks": 15,
+    "chart_contract_checks": 3,
+    "python_syntax_files": 32,
+    "notebook_code_syntax": "all cells"
+  },
+  "core_check_scope": "NumPy scientific routines and actual RAMA function bodies with explicit in-memory NetCDF test doubles; no real xarray/NetCDF execution",
+  "not_run": [
+    "Full pytest suite (pytest, xarray, gsw, torch, FastAPI unavailable)",
+    "React/TypeScript production build (dependencies unavailable)",
+    "Browser interaction/visual QA",
+    "Google Colab/GPU training",
+    "Real source downloads and observational validation"
+  ],
+  "dependency_installation": "Attempted with a dedicated venv; pip reported no matching distributions through available package access",
+  "local_gate": "Install .[train,dev], run npm ci in frontend, then python scripts/verify_release.py",
+  "regression_test_definitions": 49,
+  "notes": [
+    "Earlier v4 38/38 and build claims are historical, not v5 verification",
+    "No claim of best possible model or scientific readiness",
+    "See V5_CHANGES.md and RELEASE_STATUS.md for scope and migration"
+  ]
+}

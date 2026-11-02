@@ -1,0 +1,242 @@
+/*
+ * OceanEmbed workspace background/theme layer.
+ * IMPORTANT: workspace-only. The HeroPage is intentionally not targeted.
+ * The supplied image is used losslessly as a fixed visual layer and never
+ * participates in document flow.
+ */
+
+.shell {
+  --workspace-bg-0: #000010;
+  --workspace-bg-1: #001020;
+  --workspace-bg-2: #002040;
+  --workspace-bg-3: #003050;
+  --workspace-accent: #005070;
+  --workspace-accent-bright: #00A8D6;
+  --workspace-surface: #081B2B;
+  --workspace-surface-elevated: #0B2436;
+  --workspace-border: #16354A;
+  --workspace-border-subtle: #0E293B;
+  --workspace-text: #E6F4FA;
+  --workspace-text-secondary: #9AB3C0;
+  --workspace-text-muted: #668391;
+  --workspace-text-disabled: #425D6A;
+  --workspace-success: #72D572;
+  --workspace-warning: #E8C45A;
+  --workspace-danger: #E66A5C;
+  --workspace-info: #00A8D6;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: transparent !important;
+  color: var(--workspace-text);
+}
+
+/* Fixed image layer: never contributes to page height and never receives input. */
+.shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  background-image: url("/backgrounds/ocean-depth-workspace.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Independent, very low-strength readability layer; the source image itself is untouched. */
+.shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 16, 32, .08) 0%, rgba(0, 16, 32, .10) 52%, rgba(0, 0, 16, .14) 100%),
+    radial-gradient(ellipse 78% 64% at 50% 45%, rgba(0, 16, 32, .015), rgba(0, 0, 16, .10));
+}
+
+/* Keep workspace chrome translucent enough for the underwater environment to remain visible. */
+.shell .masthead,
+.shell > header {
+  background: linear-gradient(90deg, rgba(0, 16, 32, .91), rgba(0, 32, 64, .78)) !important;
+  border-color: rgba(22, 53, 74, .92) !important;
+  color: var(--workspace-text-secondary);
+}
+
+.shell > main {
+  color: var(--workspace-text);
+}
+
+.shell .panel {
+  background: linear-gradient(145deg, rgba(8, 27, 43, .86), rgba(0, 16, 32, .82)) !important;
+  border-color: rgba(22, 53, 74, .94) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(0, 168, 214, .045),
+    0 18px 50px rgba(0, 0, 16, .20);
+  backdrop-filter: blur(7px) saturate(108%);
+  -webkit-backdrop-filter: blur(7px) saturate(108%);
+}
+
+.shell .panel:hover {
+  border-color: rgba(0, 80, 112, .92) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(0, 168, 214, .07),
+    0 20px 58px rgba(0, 0, 16, .26);
+}
+
+.shell .eyebrow,
+.shell .muted,
+.shell .run-chip,
+.shell .panel-heading span,
+.shell .field > span {
+  color: var(--workspace-text-secondary);
+}
+
+.shell h1,
+.shell h2,
+.shell h3,
+.shell strong,
+.shell label {
+  color: var(--workspace-text);
+}
+
+.shell select,
+.shell input[type="number"],
+.shell input[type="text"] {
+  background: rgba(7, 21, 34, .92) !important;
+  color: var(--workspace-text) !important;
+  border-color: var(--workspace-border) !important;
+}
+
+.shell select:hover,
+.shell input[type="number"]:hover,
+.shell input[type="text"]:hover {
+  border-color: var(--workspace-accent) !important;
+}
+
+.shell select:focus,
+.shell input[type="number"]:focus,
+.shell input[type="text"]:focus {
+  border-color: var(--workspace-accent-bright) !important;
+  box-shadow: 0 0 0 3px rgba(0, 168, 214, .10);
+}
+
+.shell button {
+  background: rgba(8, 27, 43, .88);
+  color: var(--workspace-text-secondary);
+  border-color: var(--workspace-border);
+  transition:
+    background-color .28s ease,
+    border-color .28s ease,
+    color .28s ease,
+    box-shadow .28s ease,
+    transform .28s cubic-bezier(.2,.8,.2,1);
+}
+
+.shell button:hover:not(:disabled) {
+  background: rgba(11, 36, 54, .94);
+  color: var(--workspace-text);
+  border-color: var(--workspace-accent);
+}
+
+.shell button:focus-visible,
+.shell input:focus-visible,
+.shell select:focus-visible {
+  outline-color: var(--workspace-accent-bright);
+  box-shadow: 0 0 0 3px rgba(0, 168, 214, .11);
+}
+
+.shell nav button.active {
+  color: var(--workspace-accent-bright) !important;
+  border-bottom-color: var(--workspace-accent-bright) !important;
+  background: linear-gradient(180deg, rgba(0, 80, 112, .08), rgba(0, 168, 214, .025));
+}
+
+.shell .primary,
+.shell button.primary {
+  background: linear-gradient(105deg, #00A8D6, #0088B5) !important;
+  color: #001020 !important;
+  border-color: #00A8D6 !important;
+  box-shadow: 0 10px 28px rgba(0, 168, 214, .15);
+}
+
+.shell .primary:hover,
+.shell button.primary:hover {
+  background: linear-gradient(105deg, #26bde4, #00A8D6) !important;
+  box-shadow: 0 13px 34px rgba(0, 168, 214, .21);
+}
+
+.shell .text-button {
+  background: transparent !important;
+  color: var(--workspace-accent-bright) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.shell .badge {
+  color: var(--workspace-accent-bright);
+  border-color: rgba(0, 80, 112, .9);
+  background: rgba(0, 16, 32, .54);
+}
+
+.shell .badge.amber {
+  color: var(--workspace-warning);
+  border-color: rgba(232, 196, 90, .55);
+}
+
+.shell .notice {
+  background: rgba(7, 21, 34, .76) !important;
+  border-color: var(--workspace-border) !important;
+  color: var(--workspace-text-secondary) !important;
+}
+
+.shell .toolbar,
+.shell .timeline,
+.shell .access-tools button {
+  background: rgba(8, 27, 43, .76);
+}
+
+.shell footer,
+.shell .operational-notice {
+  background: rgba(0, 16, 32, .84) !important;
+  border-color: rgba(22, 53, 74, .86) !important;
+  color: var(--workspace-text-secondary);
+}
+
+.shell .operational-notice {
+  color: var(--workspace-text-muted);
+}
+
+/* Keep data visualization colours intact; only the surrounding workspace chrome is themed. */
+.shell .ocean-map,
+.shell .plotly,
+.shell .js-plotly-plot {
+  color: inherit;
+}
+
+@media (max-width: 900px) {
+  .shell::before {
+    background-position: 50% 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .shell::before {
+    /* Keep the central dark-water region in view on narrow screens. */
+    background-position: center center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell::before {
+    transform: none;
+  }
+}

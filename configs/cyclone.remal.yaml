@@ -1,0 +1,18 @@
+reviewed: true
+
+path: data/observations/remal_2024_track.csv
+
+columns:
+  name: name
+  datetime: iso_time
+  lat: latitude
+  lon: longitude
+  max_wind: wmo_wind
+  pressure: wmo_pres
+  category: nature
+
+wind_averaging: "3-minute sustained"
+
+category_scheme: "IBTrACS storm-nature classification (DS=disturbance, TS=tropical, MX=mixed/transitioning, ET=extratropical, SS=subtropical, NR=not reported) -- this is IBTrACS's own track-type flag, not IMD's official intensity-grade scale"
+
+source: "NOAA IBTrACS v04r01 (ERDDAP dataset IBTrACS_since1980_1), storm REMAL, 2024 North Indian Ocean season; wind/pressure values attributed to IMD/RSMC New Delhi (wmo_agency=newdelhi) as relayed through IBTrACS; retrieved 2026-09-26"

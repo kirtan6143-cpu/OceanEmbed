@@ -1,0 +1,24 @@
+name: Verify OceanEmbed
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: pip install -e '.[dev]'
+      - run: pip install 'torch>=2.4,<3' --index-url https://download.pytorch.org/whl/cpu
+      - run: pytest -q
+      - name: Release-gate rehearsal on the synthetic fixture
+        run: |
+          python -m oceanembed.cli demo --cube /tmp/gate/cube.nc --run /tmp/gate/demo.nc
+          python scripts/regenerate_v2_artifacts.py /tmp/gate/demo.nc --allow-synthetic
+      - run: npm ci && npm test && npm run build
+        working-directory: frontend

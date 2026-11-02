@@ -1,0 +1,17 @@
+v7 + adversarial hardening pass. 106 test functions across 16 files, all passing
+(was 97 before the hardening pass, 87 before v7's features).
+
+New in this pass:
+  tests/test_cli_cyclone.py    2 tests  (cyclone-context and cold-wake run
+                                          through the real argparse entry point)
+  8 new regression tests added directly to test_reliability.py for the two
+  validation gaps found by adversarially attacking field_states/profile_state
+  (negative thresholds, mismatched array shapes).
+
+Also re-verified in this environment after the hardening changes:
+  - all real API call shapes into reliability.py still satisfy the new,
+    stricter validation (test_api_features.py, 10/10 still passing)
+  - frontend: tsc --noEmit && vite build passed after reinstalling
+    node_modules (1584 modules; shell 259.84 kB, Plotly lazy chunk separate)
+
+106 passed in 82.27s

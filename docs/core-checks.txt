@@ -1,0 +1,20 @@
+test_byte_qc_in_adapter (__main__.Checks.test_byte_qc_in_adapter) ... ok
+test_canonical_profile (__main__.Checks.test_canonical_profile) ... ok
+test_conformal_rank (__main__.Checks.test_conformal_rank) ... ok
+test_duplicate_subdaily_aggregation (__main__.Checks.test_duplicate_subdaily_aggregation) ... ok
+test_extra_sensor_rejected (__main__.Checks.test_extra_sensor_rejected) ... ok
+test_kelvin_in_adapter (__main__.Checks.test_kelvin_in_adapter) ... ok
+test_matchup_contract (__main__.Checks.test_matchup_contract) ... ok
+test_missing_qc_rejected (__main__.Checks.test_missing_qc_rejected) ... ok
+test_missing_site_rejected (__main__.Checks.test_missing_site_rejected) ... ok
+test_missing_units_rejected (__main__.Checks.test_missing_units_rejected) ... ok
+test_payload_rejects_old_schema (__main__.Checks.test_payload_rejects_old_schema) ... ok
+test_qc_types (__main__.Checks.test_qc_types) ... ok
+test_split_fingerprint (__main__.Checks.test_split_fingerprint) ... ok
+test_units (__main__.Checks.test_units) ... ok
+test_wrong_run_partition (__main__.Checks.test_wrong_run_partition) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.128s
+
+OK

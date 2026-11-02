@@ -1,0 +1,47 @@
+{
+  "python_tests": "106 passed; 2 dependency deprecation warnings",
+  "frontend_tests": "3 passed",
+  "build": "TypeScript and Vite production build passed",
+  "visual_browser_qa": "Blocked: approved browser cannot access localhost; local Chrome OS socket restriction",
+  "launcher": "Both services started; health passed",
+  "geographic_demo": {
+    "source_mode": "synthetic",
+    "lat_count": 64,
+    "lon_count": 76,
+    "depth_count": 15,
+    "reliability": {
+      "counts": {
+        "Supported": 2114,
+        "Caution": 524,
+        "Abstain": 2226
+      },
+      "total_cells": 4864,
+      "evaluated_cells": 2638,
+      "supported_fraction_of_evaluated": 0.8013646702047005
+    }
+  },
+  "api_checks_via_testclient": [
+    "runs",
+    "field",
+    "profile",
+    "section",
+    "empty Argo validation"
+  ],
+  "real_gpu_training": false,
+  "real_argo_accuracy": false,
+  "ci_executed_on_github": false,
+  "exports_via_testclient": {
+    "csv": {
+      "bytes": 1579,
+      "content_type": "text/csv; charset=utf-8"
+    },
+    "png": {
+      "bytes": 47427,
+      "content_type": "image/png"
+    },
+    "netcdf": {
+      "bytes": 1706064,
+      "content_type": "application/x-netcdf"
+    }
+  }
+}

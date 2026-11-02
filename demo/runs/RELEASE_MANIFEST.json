@@ -1,0 +1,58 @@
+{
+  "verdict": "PASS",
+  "checked_at": "2026-09-27T07:29:36.382772+00:00",
+  "scientific_release": true,
+  "run": {
+    "path": "demo\\runs\\demo.nc",
+    "sha256": "3cf229d249b090b7c0732cc50d97ec90414e89452a37c5196804b92fb1e0212e"
+  },
+  "run_identity": {
+    "source_mode": "GLORYS reanalysis (v3/v4 ensemble)",
+    "partition": "full_range_retrospective",
+    "model_fingerprint": "627f6feaff52d2f73df69a470a6cfd677037e63ff02c2c4763cee8af81787ae7",
+    "grid_fingerprint": "eeb345e676533012b75d425fb098889a3f8516743769b7cf6ad7dfcf89119d0b",
+    "source_cube_sha256": "not supplied",
+    "split_manifest_sha256": null,
+    "inference_config_fingerprint": null,
+    "weights_sha256": "9947912ac6dafc4e9c6da335086af27e47afd1570c7480f49865c87d5bdbbe6d",
+    "surface_convention": "copy_shallowest_to_zero",
+    "surface_tolerance_m": 1.0
+  },
+  "artifacts": {
+    "argo_validation.json": {
+      "path": "demo\\runs\\argo_validation.json",
+      "sha256": "3adc4c8c7ffa2d1abb630aa120ecc7ece280b526173bfdd867143caa6d4689e6"
+    },
+    "cyclone_context.json": {
+      "path": "demo\\runs\\cyclone_context.json",
+      "sha256": "58df635a1d3e2022b00f0224fc989fe77f8abb3cf9224ba58dca1efd0b166325"
+    },
+    "cold_wake.json": {
+      "path": "demo\\runs\\cold_wake.json",
+      "sha256": "f9021b50e078c9250c42fd9cbb63a667487f29d7c340c205439b67b4a1158f15"
+    },
+    "demo.metrics.json": {
+      "path": "demo\\runs\\demo.metrics.json",
+      "sha256": "232374c49abeb88b83ff9dd160680b10424cb2f58a9380d7c845ee7e7ee537bb"
+    }
+  },
+  "failures": [],
+  "warnings": [
+    "demo.metrics.json is teacher/reference evaluation, not independent observational validation"
+  ],
+  "environment": {
+    "python": "3.14.0",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "xarray": "2026.7.0",
+      "h5netcdf": "1.8.1",
+      "h5py": "3.16.0",
+      "gsw": "3.6.23",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5",
+      "torch": null
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "release": "0.7.0",
+  "checked_on": "2026-09-11",
+  "builds_on": "v6 (serving/performance); v7 adds the four feature gaps from the external honest review",
+  "verification_actually_run_here": {
+    "pytest": "106/106 passed (was 97 pre-hardening). See adversarial_hardening below.",
+    "frontend_build": "tsc --noEmit && vite build passed. 1584 modules. Shell 259.84 kB, Plotly lazy chunk 4.84 MB (v6 code-splitting confirmed working).",
+    "live_end_to_end": "demo run -> cyclone-context CLI -> cold-wake CLI -> /field, /profile, /cyclone/context, /cyclone/cold-wake, /baselines all served through the real FastAPI app.",
+    "controlled_numeric_check": "cold_wake recovers an injected -2.0 C cooling exactly (abs tol 1e-6) in tests/test_cyclone.py."
+  },
+  "bugs_found_and_fixed_in_this_releases_own_new_code": [
+    "Reason precedence: 'no_value' overwrote the more informative 'below_seabed'/'dry_cell'. Structural reasons now win, so the reported reason explains the absence.",
+    "All-NaN RuntimeWarning in field_states when every surface channel was missing at a cell; replaced nanmax with a masked max over cells that have at least one finite channel."
+  ],
+  "design_decisions_worth_re_reading_before_changing": {
+    "shallow_profiles": "A profile's overall state is the worst state among REPORTING depths. A 400 m water column stays Supported for the 12 levels it has, with depths_reporting published. Marking every shelf profile Abstain would make the gate useless.",
+    "calibration_separate_from_state": "calibration_applies is a separate field. A Supported point on an uncalibrated run must not imply coverage.",
+    "baselines_separate_from_validation": "/baselines is reanalysis-target agreement; /validation is held-out observational agreement. They are never merged.",
+    "persistence_own_n": "Persistence is undefined across time gaps and reports its own per-depth n. Compare counts, not just RMSE.",
+    "cyclone_is_retrospective": "Best-track overlay describes a past storm's ocean state. Never an intensity or RI forecast. IMD categories never remapped to Saffir-Simpson."
+  },
+  "still_not_done": [
+    "No real ocean data (STOP 2 never run) - every number shown is synthetic or CPU-smoke-test",
+    "No GPU training; model has never trained to convergence",
+    "No measured scientific skill; no real Argo RMSE exists",
+    "No real IMD/RSMC best-track file has been ingested - the cyclone adapter is tested against fixtures only",
+    "Browser visual/interaction QA not performed in this sandbox (no browser tool available here)",
+    "Adaptation training stage, learned uncertainty scaling, attention, WOA prior remain optional roadmap items"
+  ],
+  "honest_bottom_line": "The four named feature gaps are closed in code and tested. That makes the demo complete, not validated. The review's most important finding - that no real-data validation number exists - is unchanged and can only be closed by running STOP 2.",
+  "adversarial_hardening_pass": {
+    "attacked": [
+      "oversized/negative edge_cells",
+      "negative max_age_hours",
+      "mismatched support/bathymetry/age_hours shapes",
+      "empty track CSV",
+      "out-of-range lat/lon",
+      "lon in 0-360 convention",
+      "cold_wake days <= 0",
+      "duplicate track points",
+      "depth == bathymetry boundary case",
+      "cyclone CLI commands run through the real argparse entry point"
+    ],
+    "real_bugs_found_and_fixed": [
+      "field_states/profile_state accepted negative max_age_hours/edge_cells and mismatched-shape arrays silently or with a raw IndexError instead of raising a clear ValueError. Both now validate explicitly."
+    ],
+    "confirmed_already_correct": [
+      "lon 270 normalizes to -90 correctly",
+      "empty CSV raises 'No usable track points found'",
+      "out-of-range lat raises a clear coordinate error",
+      "cold_wake rejects days <= 0",
+      "cold_wake already deduplicated repeated grid cells (existing behaviour, reconfirmed)",
+      "depth == bathymetry treated as supported (deepest valid observation), not below_seabed"
+    ],
+    "new_tests_from_this_pass": 9
+  }
+}

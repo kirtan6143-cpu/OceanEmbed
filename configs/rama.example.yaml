@@ -1,0 +1,26 @@
+# STOP 2: inspect real files before enabling this mapping.
+reviewed: false
+path: data/raw/rama/*.nc
+# Must identify the physical station consistently across all files.
+# Alternatively use mooring_id_variable; never set both.
+mooring_id_attr: site_code
+lat_var: latitude
+lon_var: longitude
+time_variable: time
+# Default rejects multiple samples per day. After review, 'mean' averages
+# QC-approved samples once per station/day/depth, removing exact duplicates.
+daily_reduction: reject_subdaily
+# Keys are ACTUAL instrument depths. Do not relabel 17 m as 20 m.
+# Select instrument variables explicitly; non-singleton extra dimensions fail.
+depth_variable:
+  20: temperature_20m
+  100: temperature_100m
+# Temperature variable attributes MUST declare Celsius or Kelvin units.
+# Kelvin is converted to Celsius. Missing/unsupported units cause an error.
+qc_variable:
+  20: temperature_20m_qc
+  100: temperature_100m_qc
+accepted_qc: ['1', '2']
+# If a product genuinely has no QC variables, remove qc_variable and provide
+# a product-specific qc_review_note. A blank/REPLACE placeholder is rejected.
+

@@ -1,0 +1,42 @@
+# Best-track configuration template.
+#
+# This refuses to execute (load_track raises) until you have opened a real
+# downloaded best-track file and confirmed every mapping below against it.
+# The column names here are PLACEHOLDERS, not a verified IMD/RSMC layout --
+# agencies differ in column naming, wind averaging period and category
+# vocabulary, and guessing one would be exactly the kind of silent
+# assumption the rest of this project refuses to make.
+#
+# Where to get real data: IMD/RSMC New Delhi publishes best-track archives
+# for North Indian Ocean cyclones. Download the storm you want, convert to
+# CSV if needed, and keep the original file alongside it for provenance.
+reviewed: false
+
+path: data/raw/cyclone/amphan_2020.csv
+
+# One storm per file. A file containing several storms is rejected --
+# split it first, so a track overlay can never silently blend two systems.
+columns:
+  name: STORM_NAME
+  datetime: ISO_TIME        # anything numpy.datetime64 can parse
+  lat: LAT
+  lon: LON
+  # Optional. If you map max_wind you MUST set wind_averaging below;
+  # if you map category you MUST set category_scheme below.
+  max_wind: WIND_KT
+  pressure: PRES_HPA
+  category: GRADE
+
+# The source agency's own wind averaging period, written as the agency
+# writes it. IMD uses 3-minute sustained winds; JTWC uses 1-minute. These
+# are not interchangeable and are never converted by this code.
+wind_averaging: "3-minute sustained"
+
+# The source's own category vocabulary. IMD grades (Depression, Deep
+# Depression, Cyclonic Storm, Severe Cyclonic Storm, Very Severe Cyclonic
+# Storm, Extremely Severe Cyclonic Storm, Super Cyclonic Storm) are NOT
+# Saffir-Simpson categories. Labels are preserved verbatim, never remapped.
+category_scheme: "IMD"
+
+# Free-text provenance: agency, archive URL, and the date you retrieved it.
+source: "IMD/RSMC New Delhi best track, retrieved YYYY-MM-DD"
